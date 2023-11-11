@@ -12,7 +12,7 @@ type TodoListProps = {
 const TodoList: React.FC<TodoListProps> = ({ todos }) => {
   return <div>
     {todos.map(todo => (
-      <TodoListItem todo={todo} key={todo.id}/>
+      <TodoListItem todo={todo} key={todo.id} />
     ))}
   </div>
 }

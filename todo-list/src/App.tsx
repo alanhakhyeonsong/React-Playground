@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useCallback, useRef } from 'react';
 import TodoHeader from './components/TodoHeader';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
@@ -36,10 +36,25 @@ const App: React.FC = () => {
     },
   ]);
 
+  const nextId = useRef(6);
+
+  const onInsert = useCallback(
+    (text: string) => {
+      const todo = {
+        id: nextId.current,
+        text,
+        checked: false,
+      };
+      setTodos(todos.concat(todo));
+      nextId.current += 1;
+    },
+    [todos],
+  );
+
   return (
     <div className="container">
         <TodoHeader>
-          <TodoInput />
+          <TodoInput onInsert={onInsert} />
         </TodoHeader>
         <TodoList todos={todos} />
       </div>
