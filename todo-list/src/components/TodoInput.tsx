@@ -1,4 +1,4 @@
-import React, { useState, useCallback, ChangeEvent } from 'react';
+import React, { useState, useCallback, ChangeEvent, FormEvent } from 'react';
 
 type TodoInputProps = {
   onInsert: (text: string) => void;
@@ -13,6 +13,10 @@ const TodoInput: React.FC<TodoInputProps> = ({ onInsert }) => {
 
   const onSubmit = useCallback((e: React.FormEvent) => {
       e.preventDefault();
+      if (value.trim() === '') {
+        alert('할 일을 입력하세요!');
+        return;
+      }
       onInsert(value);
       setValue('');
     },
