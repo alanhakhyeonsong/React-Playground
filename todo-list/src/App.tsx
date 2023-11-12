@@ -1,4 +1,4 @@
-import React, { Component, useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import TodoHeader from './components/TodoHeader';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
@@ -9,34 +9,10 @@ type todo = {
 
 const App: React.FC = () => {
   const [todos, setTodos] = useState<todo[]>([
-    {
-      id: 1,
-      text: 'TypeScript 공부하기',
-      checked: true,
-    },
-    {
-      id: 2,
-      text: 'React로 todolist 만들기',
-      checked: true,
-    },
-    {
-      id: 3,
-      text: 'Effective Java 스터디 준비',
-      checked: false,
-    },
-    {
-      id: 4,
-      text: '운동하기',
-      checked: false,
-    },
-    {
-      id: 5,
-      text: '밤이랑 놀기',
-      checked: false,
-    },
+    
   ]);
 
-  const nextId = useRef(6);
+  const nextId = useRef(1);
 
   const onInsert = useCallback(
     (text: string) => {
@@ -51,12 +27,28 @@ const App: React.FC = () => {
     [todos],
   );
 
+  const onRemove = useCallback(
+    (id: number) => {
+      setTodos(todos.filter(todo => todo.id !== id));
+    },
+    [todos],
+  );
+
+  const onToggle = useCallback(
+    (id: number) => {
+      setTodos(
+        todos.map(todo => todo.id === id? {...todo, checked: !todo.checked } : todo,)
+      );
+    },
+    [todos],
+  );
+
   return (
     <div className="container">
         <TodoHeader>
           <TodoInput onInsert={onInsert} />
         </TodoHeader>
-        <TodoList todos={todos} />
+        <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
       </div>
   );
 }
