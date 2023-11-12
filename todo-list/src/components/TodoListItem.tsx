@@ -17,11 +17,16 @@ const TodoListItem: React.FC<TodoListItemProps> = ({ todo, onRemove, onToggle })
     onToggle(id);
   };
 
+  const handleRemove = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onRemove(id);
+  };
+
   return <div>
     <ul id="myUL">
         <li className={todo.checked ? 'checked' : ''} onClick={handleToggle}>
           {todo.text}
-          <span className="close" onClick={() => onRemove(id)}>x</span>
+          <span className="close" onClick={handleRemove}>x</span>
         </li>
       </ul>
   </div>

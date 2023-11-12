@@ -8,9 +8,7 @@ type todo = {
 };
 
 const App: React.FC = () => {
-  const [todos, setTodos] = useState<todo[]>([
-    
-  ]);
+  const [todos, setTodos] = useState<todo[]>([]);
 
   const nextId = useRef(1);
 
