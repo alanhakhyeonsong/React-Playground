@@ -2,6 +2,7 @@ import React, { useState, useCallback, useRef } from 'react';
 import TodoHeader from './components/TodoHeader';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
+import { onInsert, onRemove, onToggle } from './functions/todoFunctions';
 
 type todo = {
   id: number; text: string; checked: boolean;
@@ -12,41 +13,16 @@ const App: React.FC = () => {
 
   const nextId = useRef(1);
 
-  const onInsert = useCallback(
-    (text: string) => {
-      const todo = {
-        id: nextId.current,
-        text,
-        checked: false,
-      };
-      setTodos(todos.concat(todo));
-      nextId.current += 1;
-    },
-    [todos],
-  );
-
-  const onRemove = useCallback(
-    (id: number) => {
-      setTodos(todos.filter(todo => todo.id !== id));
-    },
-    [todos],
-  );
-
-  const onToggle = useCallback(
-    (id: number) => {
-      setTodos(
-        todos.map(todo => todo.id === id? {...todo, checked: !todo.checked } : todo,)
-      );
-    },
-    [todos],
-  );
+  const insertTodo = onInsert(todos, setTodos, nextId);
+  const removeTodo = onRemove(todos, setTodos);
+  const toggleTodo = onToggle(todos, setTodos);
 
   return (
     <div className="container">
         <TodoHeader>
-          <TodoInput onInsert={onInsert} />
+          <TodoInput onInsert={insertTodo} />
         </TodoHeader>
-        <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
+        <TodoList todos={todos} onRemove={removeTodo} onToggle={toggleTodo} />
       </div>
   );
 }
