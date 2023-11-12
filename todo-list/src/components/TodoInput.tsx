@@ -1,4 +1,4 @@
-import React, { useState, useCallback, ChangeEvent, FormEvent } from 'react';
+import React, { useState, useCallback, ChangeEvent } from 'react';
 
 type TodoInputProps = {
   onInsert: (text: string) => void;
