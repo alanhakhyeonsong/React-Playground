@@ -4,11 +4,11 @@ interface GlobalLayoutProps {
   children: ReactNode;
 }
 
-const TodoTemplate = ({ children }: GlobalLayoutProps) => {
+const TodoHeader = ({ children }: GlobalLayoutProps) => {
   return <div id="myDiv" className="header">
     <h2>Ramos의 Todo list</h2>
     <div className="content">{children}</div>
   </div>
 };
 
-export default TodoTemplate;
+export default TodoHeader;
