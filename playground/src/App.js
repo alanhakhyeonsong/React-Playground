@@ -1,8 +1,8 @@
 import './App.css';
-import Counter from './components/Counter';
+import Say from './components/Say';
 
 function App() {
-  return <Counter />
+  return <Say />
 }
 
 export default App;
