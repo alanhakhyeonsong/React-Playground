@@ -1,8 +1,8 @@
 import './App.css';
-import EventPractice from './eventprac/EventPracticeFunc'
+import ValidationSample from './chapter05/ValidationSample';
 
 function App() {
-  return <EventPractice />
+  return <ValidationSample />
 }
 
 export default App;
