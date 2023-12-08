@@ -8,7 +8,6 @@ const Info = () => {
 
   const { name, nickname } = state;
 
-
   return (
     <div>
       <div>
