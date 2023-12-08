@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
 import './App.css';
-import Counter from './chapter08/Counter';
+import Info from './chapter08/Info';
 
 function App() {
   return (
-    <Counter />
+    <Info />
   );
 }
 
